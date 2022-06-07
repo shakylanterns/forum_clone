@@ -1,4 +1,9 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
+
+// add a custom font to the sans fail-safe font stack in the default config
+const sansCopy = [...defaultTheme.fontFamily.sans];
+sansCopy.unshift("IBM Plex Sans");
 
 module.exports = {
   content: [
@@ -17,6 +22,9 @@ module.exports = {
       },
       spacing: {
         "80p": "80%",
+      },
+      fontFamily: {
+        sans: sansCopy,
       },
     },
   },
