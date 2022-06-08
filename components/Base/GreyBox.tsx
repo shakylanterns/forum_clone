@@ -2,11 +2,18 @@ import React from "react";
 
 type Props = {
   children: JSX.Element | string;
+  needPadding?: boolean;
 };
 
-const GreyBox = ({ children }: Props) => {
+const GreyBox = ({ children, needPadding = true }: Props) => {
   return (
-    <div className="bg-white border-2 border-gray-200 p-4">{children}</div>
+    <div
+      className={`bg-white border-2 border-gray-200 ${
+        needPadding ? "p-4" : ""
+      }`}
+    >
+      {children}
+    </div>
   );
 };
 
