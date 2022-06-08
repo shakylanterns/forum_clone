@@ -7,7 +7,7 @@ type Props = {
 
 const TopicsDropdown = ({ topics }: Props) => {
   return (
-    <div className="block md:absolute left-0 top-8 md:p-2 md:bg-white md:border-2 md:border-gray-300 min-w-full">
+    <div className="block lg:absolute left-0 top-8 lg:p-2 lg:bg-white lg:border-2 lg:border-gray-300 min-w-full">
       {topics.length === 0 && (
         <p className="my-4">
           You currently do not have any subscriptions. Subscribe to topics so

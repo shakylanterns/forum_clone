@@ -13,11 +13,19 @@ const NavTopics = (props: Props) => {
         onClick={() => setOpenTopics((topics) => !topics)}
       >
         <span className="mr-2">Subscribed Topics</span>
-        {openTopics ? (
-          <FaCaretUp className="inline-block w-4 h-4" />
-        ) : (
-          <FaCaretDown className="inline-block w-4 h-4" />
-        )}
+        <button>
+          {openTopics ? (
+            <FaCaretUp
+              className="inline-block w-4 h-4"
+              data-testid="fa-caret-up"
+            />
+          ) : (
+            <FaCaretDown
+              className="inline-block w-4 h-4"
+              data-testid="fa-caret-down"
+            />
+          )}
+        </button>
       </li>
       {openTopics ? <TopicsDropdown topics={[]} /> : null}
     </div>
