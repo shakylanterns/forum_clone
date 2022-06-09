@@ -13,4 +13,12 @@ export interface Post {
   id: number;
 }
 
+export interface Comment {
+  user: User;
+  content: string;
+  publishedAt: Date;
+  postId: number;
+  id: number;
+}
+
 export type SortingCriterion = "none" | "top" | "popular" | "controversial";

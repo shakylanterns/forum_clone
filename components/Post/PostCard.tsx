@@ -1,6 +1,6 @@
-import { formatDuration, intervalToDuration } from "date-fns";
 import Link from "next/link";
 import React, { useMemo, useState } from "react";
+import { niceDuration } from "../../helpers/niceDuration";
 import { Post } from "../../helpers/types";
 import Anchor from "../Base/Anchor";
 import GreyBox from "../Base/GreyBox";
@@ -17,19 +17,8 @@ const PostCard = ({ post }: Props) => {
     : post.content;
 
   const niceDurationString = useMemo(() => {
-    const duration = intervalToDuration({
-      start: post.publishedAt,
-      end: new Date(),
-    });
-    const formatString = formatDuration(duration, {
-      format: ["years", "months", "days", "hours", "minutes"],
-    });
-    // if it is under a minute
-    if (formatString === "") {
-      return "less than a minute ago";
-    }
-    return formatString + " ago";
-  }, [post]);
+    return niceDuration(post.publishedAt);
+  }, [post.publishedAt]);
 
   return (
     <GreyBox>
@@ -44,7 +33,7 @@ const PostCard = ({ post }: Props) => {
           <span className="font-semibold">
             <Anchor href={`/account/${post.user.id}`}>{post.user.name}</Anchor>
           </span>{" "}
-          {niceDurationString}
+          at {niceDurationString}
         </p>
         <h2 className="font-bold text-xl md:text-2xl">{post.title}</h2>
         <p className="" style={{ maxWidth: "75ch" }}>

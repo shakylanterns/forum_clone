@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useState } from "react";
-import SortingControls from "../components/SortingControls/SortingControls";
+import SortingControls from "../components/Sorting/SortingControls";
 import { SortingCriterion } from "../helpers/types";
 
 const Wrapper = () => {

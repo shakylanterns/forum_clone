@@ -2,7 +2,8 @@ import type { NextPage } from "next";
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import PostList from "../components/Post/PostList";
-import SortingControls from "../components/SortingControls/SortingControls";
+import PostSearch from "../components/Sorting/PostSearch";
+import SortingControls from "../components/Sorting/SortingControls";
 import { Post, SortingCriterion } from "../helpers/types";
 
 // this is just temporary
@@ -25,6 +26,7 @@ const Home: NextPage = () => {
     <Layout>
       <div className="space-y-4">
         <SortingControls selected={selected} setSelected={setSelected} />
+        <PostSearch />
         <PostList posts={postList} />
       </div>
     </Layout>
