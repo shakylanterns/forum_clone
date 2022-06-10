@@ -15,7 +15,6 @@ const Sidebar = (props: Props) => {
     return <div>Loading...</div>;
   }
   const id = query.topicId as string;
-  console.log(query.topicId, pathname);
 
   return (
     <div className="space-y-8">
