@@ -11,9 +11,6 @@ const Sidebar = (props: Props) => {
   const router = useRouter();
   const { query, pathname } = router;
 
-  if (!router.isReady) {
-    return <div>Loading...</div>;
-  }
   const id = query.topicId as string;
 
   return (

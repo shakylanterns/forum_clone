@@ -4,7 +4,7 @@ import FieldError from "./FieldError";
 
 type Props = {
   name: string;
-  labelText: string;
+  labelText?: string;
 } & React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
@@ -21,7 +21,7 @@ const Input = (props: Props) => {
   ).labelText;
   return (
     <div className="space-y-2 mb-2">
-      <label htmlFor={name}>{labelText}</label>
+      {labelText && <label htmlFor={name}>{labelText}</label>}
       <input
         {...field}
         {...withoutLabelText}

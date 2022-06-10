@@ -22,3 +22,4 @@ export interface Comment {
 }
 
 export type SortingCriterion = "none" | "top" | "popular" | "controversial";
+export type ItemTypes = "posts" | "comments";

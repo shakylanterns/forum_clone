@@ -19,6 +19,9 @@ const SidebarUser = ({ user }: Props) => {
             <Anchor href={`/account/${user.id}`}>{user.name}</Anchor>
           </p>
           <Button>Logout</Button>
+          <Button>
+            <Link href={`/account/manage`}>Change User Info</Link>
+          </Button>
         </div>
       ) : (
         <div className="flex flex-col space-y-4">
