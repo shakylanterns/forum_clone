@@ -7,23 +7,39 @@ import GreyBox from "../Base/GreyBox";
 type Props = {
   isAdmin: boolean;
   topic: string;
+  id: number;
   subscribers: number;
+  subscribed: boolean;
 };
 
-const TopicControls = ({ isAdmin, topic, subscribers }: Props) => {
+const TopicControls = ({
+  isAdmin,
+  topic,
+  subscribers,
+  subscribed,
+  id,
+}: Props) => {
   return (
     <GreyBox>
       <div className="space-y-4">
-        <span className="font-semibold text-lg">{topic}</span>
-        <div>
-          <span className="text-4xl">{subscribers}</span>
-          <p className="">subscribers</p>
+        <div className="flex justify-between items-center">
+          <span className="font-semibold text-lg">{topic}</span>
+          <span className="">{subscribers} subscribers</span>
         </div>
-        {isAdmin && (
-          <Button>
-            <Link href={`/manage/${topic}`}>Manage Topic</Link>
-          </Button>
-        )}
+        <div>
+          {subscribed ? (
+            <Button>Unsubscribe</Button>
+          ) : (
+            <Button>Subscribe</Button>
+          )}
+        </div>
+        <div>
+          {isAdmin && (
+            <Button>
+              <Link href={`/topic/${id}/manage`}>Manage Topic</Link>
+            </Button>
+          )}
+        </div>
       </div>
     </GreyBox>
   );

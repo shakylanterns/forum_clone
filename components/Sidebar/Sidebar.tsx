@@ -8,9 +8,14 @@ import TopicDescription from "./TopicDescription";
 type Props = {};
 
 const Sidebar = (props: Props) => {
-  const { query, pathname } = useRouter();
+  const router = useRouter();
+  const { query, pathname } = router;
 
-  const id = query.id as string;
+  if (!router.isReady) {
+    return <div>Loading...</div>;
+  }
+  const id = query.topicId as string;
+  console.log(query.topicId, pathname);
 
   return (
     <div className="space-y-8">
@@ -19,7 +24,13 @@ const Sidebar = (props: Props) => {
       {/* If the user is not on a topic page (e.g. main page), do not render the topic controls */}
       {pathname.startsWith("/topic") && id !== undefined ? (
         <Fragment>
-          <TopicControls isAdmin={true} subscribers={100} topic={"test"} />
+          <TopicControls
+            isAdmin={true}
+            subscribers={100}
+            topic={"test"}
+            subscribed={true}
+            id={1}
+          />
           <TopicDescription topic="test" description="test" />
         </Fragment>
       ) : null}
