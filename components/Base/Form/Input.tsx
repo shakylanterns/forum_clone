@@ -6,12 +6,12 @@ type Props = {
   name: string;
   labelText: string;
 } & React.DetailedHTMLProps<
-  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-  HTMLTextAreaElement
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
 >;
 
-const Textarea = (props: Props) => {
-  const { name, labelText } = props;
+const Input = (props: Props) => {
+  const { name, labelText, disabled } = props;
   const [field, meta] = useField(props);
   // without label Text
   const withoutLabelText = { ...props };
@@ -22,14 +22,16 @@ const Textarea = (props: Props) => {
   return (
     <div className="space-y-2 mb-2">
       <label htmlFor={name}>{labelText}</label>
-      <textarea
+      <input
         {...field}
         {...withoutLabelText}
-        className="resize-none w-full h-24 overflow-y-auto bg-white border-2 border-gray-200 p-2"
+        className={`${
+          disabled ? "cursor-not-allowed" : "bg-white"
+        } w-full  border-2 border-gray-200 p-2`}
       />
       <FieldError meta={meta} />
     </div>
   );
 };
 
-export default Textarea;
+export default Input;

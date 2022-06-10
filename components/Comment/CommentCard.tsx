@@ -5,7 +5,7 @@ import Anchor from "../Base/Anchor";
 import GreyBox from "../Base/GreyBox";
 import CopyLinkButton from "./CopyLinkButton";
 import ReplyLinkButton from "./ReplyLinkButton";
-import SavePostLinkButton from "./SavePostLinkButton";
+import SaveCommentButton from "./SaveCommentButton";
 
 type Props = {
   comment: Comment;
@@ -33,7 +33,7 @@ const CommentCard = ({ comment }: Props) => {
         <p>{comment.content}</p>
         <div className="flex flex-col items-start md:flex-row md:space-x-4">
           <CopyLinkButton commentId={comment.id} />
-          <SavePostLinkButton />
+          <SaveCommentButton />
           <ReplyLinkButton />
         </div>
       </div>
