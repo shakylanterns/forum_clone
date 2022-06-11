@@ -1,15 +1,16 @@
-import Link from "next/link";
 import React, { useMemo, useState } from "react";
 import { niceDuration } from "../../helpers/niceDuration";
 import { Post } from "../../helpers/types";
 import Anchor from "../Base/Anchor";
 import GreyBox from "../Base/GreyBox";
+import PostActions from "./PostActions";
 
 type Props = {
   post: Post;
+  hideReadComments?: boolean;
 };
 
-const PostCard = ({ post }: Props) => {
+const PostCard = ({ post, hideReadComments }: Props) => {
   const [reveal, setReveal] = useState(false);
   const needExcerpt = post.content.length > 150;
   const excerpt = needExcerpt
@@ -44,16 +45,7 @@ const PostCard = ({ post }: Props) => {
             <button onClick={() => setReveal(true)}>Read Full...</button>
           </div>
         ) : null}
-        {reveal ? (
-          <div className="flex flex-col justify-center text-brand underline cursor-pointer">
-            <button onClick={() => setReveal(false)}>Close...</button>
-            <button>
-              <Link href={`/topic/${post.topic}/${post.id}`}>
-                Read Comments...
-              </Link>
-            </button>
-          </div>
-        ) : null}
+        <PostActions post={post} hideReadComments={hideReadComments} />
       </div>
     </GreyBox>
   );

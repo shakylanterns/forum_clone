@@ -31,7 +31,7 @@ const TopicPost = (props: Props) => {
   return (
     <Layout>
       <div className="space-y-4">
-        <PostCard post={post} />
+        <PostCard post={post} hideReadComments={true} />
         {comments.map((comment, index) => {
           return <CommentCard comment={comment} key={index} />;
         })}

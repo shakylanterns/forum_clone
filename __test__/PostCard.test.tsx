@@ -18,19 +18,18 @@ describe("post card works", () => {
     expect(content.textContent?.length).toBe(150 + 3);
   });
 
-  test("expanding post and contracting post", () => {
+  // I have removed the ability to un-expand posts
+  test("expanding post", () => {
     render(<PostCard post={post} />);
     const expand = screen.getByText(/read full/i);
     // click the read full button
     fireEvent.click(expand);
-    // two new buttons should appear
-    const close = screen.getByText(/close/i);
-    expect(close).toBeInTheDocument();
-    expect(screen.getByText(/read comments/i)).toBeInTheDocument();
     // the read full button should disappear when we have expanded the post
     expect(screen.queryByText(/read full/i)).toBeNull();
-    fireEvent.click(close);
-    // after we have closed the expansion, the read comments button should disappear
+  });
+
+  test("hiding read comments if the prop is passed", () => {
+    render(<PostCard post={post} hideReadComments={true} />);
     expect(screen.queryByText(/read comments/i)).toBeNull();
   });
 });
