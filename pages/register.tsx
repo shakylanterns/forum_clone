@@ -1,20 +1,20 @@
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 import Button from "../components/Base/Button";
 import Input from "../components/Base/Form/Input";
 import GreyBox from "../components/Base/GreyBox";
+import { useRedirect } from "../helpers/useRedirect";
 
 YupPassword(Yup);
 
 type Props = {};
 
 const Register = (props: Props) => {
-  const { query, push } = useRouter();
-
+  const { redirect } = useRedirect();
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <div>
@@ -30,23 +30,29 @@ const Register = (props: Props) => {
             }}
             validationSchema={Yup.object({
               username: Yup.string()
-                .required("name is required")
-                .max(255, "The username may not be longer than 255 characters"),
-              email: Yup.string().email().required("email is required"),
+                .required("Name is required")
+                .max(255, "The username may not be longer than 255 characters")
+                .test({
+                  message:
+                    "Only uppercase and lowercase English characters, numbers and underscores are allowed",
+                  name: "valid-username",
+                  // if there is any character that is out of the set, gives out true then it is inverted
+                  test: (value) => !/[^a-zA-z0-9_]/.test(value || ""),
+                }),
+              email: Yup.string().email().required("Email is required"),
               password: Yup.string()
                 .password()
-                .required()
+                .required("Password is required")
                 .min(6)
                 .minLowercase(1)
                 .minUppercase(1)
                 .minNumbers(1),
             })}
             onSubmit={() => {
-              if (query.redirect instanceof Array) {
-                push("/");
-              } else {
-                push(query.redirect || "/");
-              }
+              toast("Account Registered!", {
+                type: "success",
+              });
+              redirect();
             }}
           >
             {() => {

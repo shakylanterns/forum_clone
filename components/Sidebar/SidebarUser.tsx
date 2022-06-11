@@ -19,19 +19,19 @@ const SidebarUser = ({ user }: Props) => {
             <Anchor href={`/account/${user.id}`}>{user.name}</Anchor>
           </p>
           <Button>Logout</Button>
-          <Button>
-            <Link href={`/account/manage`}>Change User Info</Link>
-          </Button>
+          <Link href={`/account/manage`}>
+            <Button>Change User Info</Button>
+          </Link>
         </div>
       ) : (
         <div className="flex flex-col space-y-4">
           <p>You are currently not logged in.</p>
-          <Button>
-            <Link href="/register">Register an Account</Link>
-          </Button>
-          <Button>
-            <Link href="/login">Login</Link>
-          </Button>
+          <Link href="/register">
+            <Button>Register an Account</Button>
+          </Link>
+          <Link href="/login">
+            <Button>Login</Button>
+          </Link>
         </div>
       )}
     </GreyBox>

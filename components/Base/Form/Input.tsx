@@ -28,6 +28,7 @@ const Input = (props: Props) => {
         className={`${
           disabled ? "cursor-not-allowed" : "bg-white"
         } w-full  border-2 border-gray-200 p-2`}
+        id={name}
       />
       <FieldError meta={meta} />
     </div>

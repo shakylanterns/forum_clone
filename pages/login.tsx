@@ -1,17 +1,17 @@
 import { Form, Formik } from "formik";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Button from "../components/Base/Button";
 import Input from "../components/Base/Form/Input";
 import GreyBox from "../components/Base/GreyBox";
+import { useRedirect } from "../helpers/useRedirect";
 
 type Props = {};
 
 const Login = (props: Props) => {
-  const { query, push } = useRouter();
-
+  const { redirect } = useRedirect();
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <div>
@@ -28,12 +28,11 @@ const Login = (props: Props) => {
               username: Yup.string().required("name is required"),
               password: Yup.string().required(),
             })}
-            onSubmit={() => {
-              if (query.redirect instanceof Array) {
-                push("/");
-              } else {
-                push(query.redirect || "/");
-              }
+            onSubmit={({ username }) => {
+              toast(`Logged in to ${username}`, {
+                type: "success",
+              });
+              redirect();
             }}
           >
             {() => {
