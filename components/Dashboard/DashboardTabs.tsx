@@ -2,7 +2,7 @@ import React from "react";
 import { ItemTypes } from "../../helpers/types";
 import GreyBox from "../Base/GreyBox";
 
-const criteria = ["posts", "comments"] as ItemTypes[];
+const tabs = ["posts", "comments", "list"] as ItemTypes[];
 
 type Props = {
   selected: ItemTypes;
@@ -13,18 +13,18 @@ const DashboardTabs = ({ selected, setSelected }: Props) => {
   return (
     <GreyBox needPadding={false}>
       <div>
-        {criteria.map((criterion, index) => {
+        {tabs.map((tab, index) => {
           return (
             <button
               className={`inline-block py-2 px-4 ${
-                criterion === selected
+                tab === selected
                   ? "text-brand"
                   : "hover:underline hover:text-brand"
               }`}
               key={index}
-              onClick={() => setSelected(criterion)}
+              onClick={() => setSelected(tab)}
             >
-              {criterion}
+              {tab}
             </button>
           );
         })}

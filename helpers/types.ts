@@ -21,5 +21,11 @@ export interface Comment {
   id: number;
 }
 
+export interface Topic {
+  name: string;
+  id: number;
+  subscribers: number;
+}
+
 export type SortingCriterion = "none" | "top" | "popular" | "controversial";
-export type ItemTypes = "posts" | "comments";
+export type ItemTypes = "posts" | "comments" | "list";

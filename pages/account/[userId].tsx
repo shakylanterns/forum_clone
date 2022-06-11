@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import CommentCard from "../../components/Comment/CommentCard";
 import DashboardTabs from "../../components/Dashboard/DashboardTabs";
+import TopicsManager from "../../components/Dashboard/TopicsManager";
 import Layout from "../../components/Layout";
 import PostCard from "../../components/Post/PostCard";
-import { Comment, ItemTypes, Post } from "../../helpers/types";
+import { Comment, ItemTypes, Post, Topic } from "../../helpers/types";
 
 type Props = {};
 
@@ -13,6 +14,7 @@ const Dashboard = (props: Props) => {
   // temporary
   const comments: Comment[] = [];
   const posts: Post[] = [];
+  const topics: Topic[] = [];
 
   const renderContent = () => {
     switch (selected) {
@@ -30,6 +32,8 @@ const Dashboard = (props: Props) => {
         return posts.map((post) => {
           return <PostCard post={post} key={post.id} />;
         });
+      case "list":
+        return <TopicsManager topics={topics} />;
     }
   };
 

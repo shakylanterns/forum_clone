@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import Anchor from "../Base/Anchor";
 import GreyBox from "../Base/GreyBox";
+import TopicListing from "../Topic/TopicListing";
 
 type Props = {};
 
@@ -11,16 +11,9 @@ const Explore = (props: Props) => {
         <h1 className="mb-4 font-bold">Explore</h1>
         <div className="flex flex-col space-y-2">
           {/* This is just temporary */}
-          {[{ topic: "test", subscribers: 100 }].map(
-            ({ subscribers, topic }, index) => {
-              return (
-                <div key={index}>
-                  <Anchor href={`/topic/${topic}`}>{topic}</Anchor>
-                  <p>{subscribers} subscribers</p>
-                </div>
-              );
-            }
-          )}
+          {[{ name: "test", subscribers: 100, id: 1 }].map((topic) => {
+            return <TopicListing topic={topic} key={topic.id} />;
+          })}
         </div>
       </Fragment>
     </GreyBox>
