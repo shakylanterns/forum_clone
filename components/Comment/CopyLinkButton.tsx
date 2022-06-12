@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import LinkButton from "../Base/LinkButton";
 
 type Props = {
@@ -7,6 +8,7 @@ type Props = {
 
 const CopyLinkButton = ({ commentId }: Props) => {
   const copyLink = () => {
+    toast("Link copied", { type: "success" });
     navigator.clipboard.writeText(`${location.href}#comment-${commentId}`);
   };
   return <LinkButton action={copyLink}>Copy Direct Link</LinkButton>;

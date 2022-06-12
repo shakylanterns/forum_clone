@@ -1,4 +1,5 @@
 import React, { Fragment, useReducer } from "react";
+import { toast } from "react-toastify";
 import { Topic } from "../../helpers/types";
 import Button from "../Base/Button";
 import GreyBox from "../Base/GreyBox";
@@ -52,23 +53,25 @@ const TopicsManager = ({ topics }: Props) => {
               <TopicListing topic={topic} />
               {state[topic.id] ? (
                 <Button
-                  onClick={() =>
+                  onClick={() => {
+                    toast(`Unsubscribed from ${topic.name}`, { type: "info" });
                     dispatch({
                       payload: topic.id,
                       type: "unsubscribe",
-                    })
-                  }
+                    });
+                  }}
                 >
                   Unsubscribe
                 </Button>
               ) : (
                 <Button
-                  onClick={() =>
+                  onClick={() => {
+                    toast(`Subscribed to ${topic.name}`, { type: "success" });
                     dispatch({
                       payload: topic.id,
                       type: "subscribe",
-                    })
-                  }
+                    });
+                  }}
                 >
                   Subscribe
                 </Button>

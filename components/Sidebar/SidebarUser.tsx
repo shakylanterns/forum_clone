@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { User } from "../../helpers/types";
 import Anchor from "../Base/Anchor";
 import Button from "../Base/Button";
@@ -9,15 +10,19 @@ type Props = {
 };
 
 const SidebarUser = ({ user }: Props) => {
+  const handleLogout = () => {
+    toast(`Logged out from ${user?.name}`, { type: "success" });
+  };
+
   return (
     <GreyBox>
       {user ? (
-        <div>
+        <div className="space-y-2">
           <p>
             Logged in as{" "}
             <Anchor href={`/account/${user.id}`}>{user.name}</Anchor>
           </p>
-          <Button>Logout</Button>
+          <Button onClick={handleLogout}>Logout</Button>
           <Button href="/account/manage">Change User Info</Button>
         </div>
       ) : (

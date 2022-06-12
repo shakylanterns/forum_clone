@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Fragment>
       <Component {...pageProps} />
-      <ToastContainer closeOnClick closeButton autoClose={4000} />
+      <ToastContainer closeOnClick closeButton autoClose={2000} />
     </Fragment>
   );
 }

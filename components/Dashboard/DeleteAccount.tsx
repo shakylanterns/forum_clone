@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import React, { Fragment } from "react";
+import { toast } from "react-toastify";
 import GreyBox from "../Base/GreyBox";
 
 type Props = {};
@@ -7,8 +8,11 @@ type Props = {};
 const DeleteAccount = (props: Props) => {
   const router = useRouter();
   const handleDeletion = () => {
+    toast("Account Deleted! Sorry to see you go...", { type: "info" });
     // now only pushes the user back to the main page
-    router.push("/");
+    setTimeout(() => {
+      router.push("/");
+    }, 200);
   };
 
   return (

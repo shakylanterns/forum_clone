@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import { toast } from "react-toastify";
 import Button from "../Base/Button";
 import GreyBox from "../Base/GreyBox";
 
@@ -19,6 +19,14 @@ const TopicControls = ({
   subscribed,
   id,
 }: Props) => {
+  const handleSubscribe = () => {
+    if (subscribed) {
+      toast(`Unsubscribed from ${topic}`, { type: "info" });
+    } else {
+      toast(`Subscribed to ${topic}`, { type: "success" });
+    }
+  };
+
   return (
     <GreyBox>
       <div className="space-y-4">
@@ -28,16 +36,14 @@ const TopicControls = ({
         </div>
         <div>
           {subscribed ? (
-            <Button>Unsubscribe</Button>
+            <Button onClick={handleSubscribe}>Unsubscribe</Button>
           ) : (
-            <Button>Subscribe</Button>
+            <Button onClick={handleSubscribe}>Subscribe</Button>
           )}
         </div>
         <div>
           {isAdmin && (
-            <Button>
-              <Link href={`/topic/${id}/manage`}>Manage Topic</Link>
-            </Button>
+            <Button href={`/topic/${id}/manage`}>Manage Topic</Button>
           )}
         </div>
       </div>
