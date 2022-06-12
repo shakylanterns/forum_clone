@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import { User } from "../../helpers/types";
 import Anchor from "../Base/Anchor";
@@ -19,19 +18,13 @@ const SidebarUser = ({ user }: Props) => {
             <Anchor href={`/account/${user.id}`}>{user.name}</Anchor>
           </p>
           <Button>Logout</Button>
-          <Link href={`/account/manage`}>
-            <Button>Change User Info</Button>
-          </Link>
+          <Button href="/account/manage">Change User Info</Button>
         </div>
       ) : (
         <div className="flex flex-col space-y-4">
           <p>You are currently not logged in.</p>
-          <Link href="/register">
-            <Button>Register an Account</Button>
-          </Link>
-          <Link href="/login">
-            <Button>Login</Button>
-          </Link>
+          <Button href="/register">Register an Account</Button>
+          <Button href="/login">Login</Button>
         </div>
       )}
     </GreyBox>

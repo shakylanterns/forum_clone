@@ -25,6 +25,7 @@ const Textarea = (props: Props) => {
       <textarea
         {...field}
         {...withoutLabelText}
+        id={name}
         className="resize-none w-full h-24 overflow-y-auto bg-white border-2 border-gray-200 p-2"
       />
       <FieldError meta={meta} />

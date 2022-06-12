@@ -1,6 +1,7 @@
 import { Form, Formik, FormikValues } from "formik";
 import { useRouter } from "next/router";
 import React from "react";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import Button from "../../../components/Base/Button";
 import Input from "../../../components/Base/Form/Input";
@@ -14,14 +15,12 @@ const AddPost = (props: Props) => {
   const router = useRouter();
   // now it just does nothing and transport the player back to the topic page
   const handleSubmit = (data: FormikValues) => {
-    console.log(data);
-    router.push(`/topic/${router.query.topicId}`);
+    // the toast is disappearing for no reason?
+    toast("Post Added", { type: "success" });
+    setTimeout(() => {
+      router.push(`/topic/${router.query.topicId}`);
+    }, 200);
   };
-
-  // it will be prettier later
-  if (!router.isReady) {
-    return <div>Loading Page...</div>;
-  }
 
   return (
     <Layout>
@@ -38,7 +37,7 @@ const AddPost = (props: Props) => {
                 .required("Required")
                 .max(
                   255,
-                  "This comment is too long. Please stay below 255 characters"
+                  "This title is too long. Please stay below 255 characters"
                 ),
               content: Yup.string().max(
                 32768,

@@ -18,7 +18,9 @@ const Sidebar = (props: Props) => {
       <SidebarUser />
       {/* It will be real data later */}
       {/* If the user is not on a topic page (e.g. main page), do not render the topic controls */}
-      {pathname.startsWith("/topic") && id !== undefined ? (
+      {typeof pathname === "string" &&
+      pathname.startsWith("/topic") &&
+      id !== undefined ? (
         <Fragment>
           <TopicControls
             isAdmin={true}
